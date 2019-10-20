@@ -1,0 +1,51 @@
+{
+  "pages": [
+    {
+      "title": "系统技术整理",
+      "images": [
+        {
+          "router": "vue",
+          "src": "/images/vue.jpg"
+        },
+        {
+          "src": "/images/nginx.jpg"
+        },
+        {
+          "src": "/images/node.jpg"
+        },
+        {
+          "src": "/images/jenkins.jpg"
+        },
+        {
+          "src": "/images/http.jpg"
+        },
+        {
+          "src": "/images/yun.jpg"
+        }
+      ]
+    },
+    {
+      "title": "个人兴趣",
+      "images": [
+        {
+          "src": "/images/dongwu.jpg"
+        },
+        {
+          "src": "/images/fengguang.jpg"
+        },
+        {
+          "src": "/images/renxiang.jpg"
+        },
+        {
+          "src": "/images/sheying.jpg"
+        },
+        {
+          "src": "/images/xingkong.png"
+        },
+        {
+          "src": "/images/shouhui.jpg"
+        }
+      ]
+    }
+  ]
+}
