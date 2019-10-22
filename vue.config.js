@@ -5,7 +5,7 @@ function resolve (dir) {
 }
 
 module.exports = {
-  baseUrl: process.env.NODE_ENV === 'production' ? './' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
 
   chainWebpack: config => {
     // 别名

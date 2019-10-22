@@ -59,8 +59,8 @@ export default {
     }
   },
   mounted() {
-    getConfig('http://localhost:8088/configs/homePage.json').then(res => {
-      if (res.status == 200) {
+    getConfig(this.$store.state.resourceUrl + '/configs/homePage.json').then(res => {
+      if (res.status === 200) {
         this.pages = res.data.pages;
       }
     })
@@ -75,7 +75,7 @@ export default {
     handClick(name) {
       if (name) {
         this.$router.push({
-          name:name
+          name: name
         });
       }
     }
