@@ -24,25 +24,53 @@
       </div>
 
       <div class="details">
-        <Collapse v-model="value1">
-          <Panel name="1">
-            玩点
-            <p slot="content">史蒂夫·乔布斯（Steve Jobs），1955年2月24日生于美国加利福尼亚州旧金山，美国发明家、企业家、美国苹果公司联合创办人。</p>
-          </Panel>
-          <Panel name="2">
-            游玩建议
-            <p
-              slot="content"
-            >斯蒂夫·盖瑞·沃兹尼亚克（Stephen Gary Wozniak），美国电脑工程师，曾与史蒂夫·乔布斯合伙创立苹果电脑（今之苹果公司）。斯蒂夫·盖瑞·沃兹尼亚克曾就读于美国科罗拉多大学，后转学入美国著名高等学府加州大学伯克利分校（UC Berkeley）并获得电机工程及计算机（EECS）本科学位（1987年）。</p>
-          </Panel>
-          <Panel name="3">
-            注意事项
-            <p
-              slot="content"
-            >乔纳森·伊夫是一位工业设计师，现任Apple公司设计师兼资深副总裁，英国爵士。他曾参与设计了iPod，iMac，iPhone，iPad等众多苹果产品。除了乔布斯，他是对苹果那些著名的产品最有影响力的人。</p>
-          </Panel>
-        </Collapse>
+        <Tabs type="card">
+          <TabPane label="景点信息">
+            <Collapse v-model="value1">
+              <Panel name="1">
+                玩点
+                <p slot="content">史蒂夫·乔布斯（Steve Jobs），1955年2月24日生于美国加利福尼亚州旧金山，美国发明家、企业家、美国苹果公司联合创办人。</p>
+              </Panel>
+              <Panel name="2">
+                游玩建议
+                <p
+                  slot="content"
+                >斯蒂夫·盖瑞·沃兹尼亚克（Stephen Gary Wozniak），美国电脑工程师，曾与史蒂夫·乔布斯合伙创立苹果电脑（今之苹果公司）。斯蒂夫·盖瑞·沃兹尼亚克曾就读于美国科罗拉多大学，后转学入美国著名高等学府加州大学伯克利分校（UC Berkeley）并获得电机工程及计算机（EECS）本科学位（1987年）。</p>
+              </Panel>
+              <Panel name="3">
+                注意事项
+                <p
+                  slot="content"
+                >乔纳森·伊夫是一位工业设计师，现任Apple公司设计师兼资深副总裁，英国爵士。他曾参与设计了iPod，iMac，iPhone，iPad等众多苹果产品。除了乔布斯，他是对苹果那些著名的产品最有影响力的人。</p>
+              </Panel>
+              <Panel name="4">
+                玩点
+                <p slot="content">史蒂夫·乔布斯（Steve Jobs），1955年2月24日生于美国加利福尼亚州旧金山，美国发明家、企业家、美国苹果公司联合创办人。</p>
+              </Panel>
+              <Panel name="5">
+                游玩建议
+                <p
+                  slot="content"
+                >斯蒂夫·盖瑞·沃兹尼亚克（Stephen Gary Wozniak），美国电脑工程师，曾与史蒂夫·乔布斯合伙创立苹果电脑（今之苹果公司）。斯蒂夫·盖瑞·沃兹尼亚克曾就读于美国科罗拉多大学，后转学入美国著名高等学府加州大学伯克利分校（UC Berkeley）并获得电机工程及计算机（EECS）本科学位（1987年）。</p>
+              </Panel>
+              <Panel name="6">
+                注意事项
+                <p
+                  slot="content"
+                >乔纳森·伊夫是一位工业设计师，现任Apple公司设计师兼资深副总裁，英国爵士。他曾参与设计了iPod，iMac，iPhone，iPad等众多苹果产品。除了乔布斯，他是对苹果那些著名的产品最有影响力的人。</p>
+              </Panel>
+            </Collapse>
+          </TabPane>
+          <TabPane label="消费情况">
+            <div class="consumption">
+              <img src="http://localhost:8088/images/food1.jpg" />
+              <div class="price">$20</div>
+            </div>
+          </TabPane>
+          <TabPane label="用户评论">标签三的内容</TabPane>
+        </Tabs>
       </div>
+      <Spin fix v-show="loading"></Spin>
     </div>
     <div class="hide-info-btn" :class="{'active':showInfo}">
       <Button class="info-btn" @click="hideInfoPanel" :icon="getIconType2()"></Button>
@@ -51,7 +79,7 @@
       <div class="hide-btn">
         <Button @click="hideImages" :icon="getIconType()"></Button>
       </div>
-      <swiper :options="swiperOption" v-viewer="{movable: false}">
+      <swiper style="top: -0.64rem;" :options="swiperOption" v-viewer="{movable: false}">
         <swiper-slide v-for="(src,index) in images" :key="index">
           <img class="img-item" :src="src" />
         </swiper-slide>
@@ -69,13 +97,25 @@ export default {
   components: {
     BMap
   },
+
   data() {
     return {
       images: [],
-      value1: ['1', '2', '3'],
+      value1: ['1', '2', '3', '4', '5', '6'],
       testUrl: 'http://localhost:8088/images/img1.jpg',
       showImg: false,
       showInfo: true,
+      loading: true,
+      wiperOption: {
+        direction: 'vertical',
+        slidesPerView: 1,
+        spaceBetween: 30,
+        mousewheel: true,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true
+        }
+      },
       swiperOption: {
         mousewheel: true,
         slidesPerView: 'auto',
@@ -90,6 +130,12 @@ export default {
           clickable: true
         }
       }
+    }
+  },
+
+  computed: {
+    swiper() {
+      return this.$refs.mySwiper.swiper
     }
   },
   mounted() {
@@ -122,10 +168,19 @@ export default {
     showImages() {
       this.showImg = true;
     },
+
+    showLoading() {
+      this.loading = true;
+      let timeout = setInterval(() => {
+        this.loading = false;
+        window.clearTimeout(timeout);
+      }, 800)
+    },
     hideImages() {
       this.showImg = !this.showImg;
     },
     hideInfoPanel() {
+      this.showLoading();
       this.showInfo = !this.showInfo;
     }
   }
@@ -179,6 +234,9 @@ export default {
       width: 100%;
       background-color: #fafafa;
       margin-bottom: 0.5rem;
+      position: absolute;
+      top: 0;
+      height: 5.5rem;
       .main-image {
         width: 100%;
         height: 3rem;
@@ -201,15 +259,49 @@ export default {
           font-size: 12px;
           padding: 0.2rem;
         }
-        .ivu-btn {
-          border-radius: 0;
-          width: 33.333%;
+        .operate-btns {
+          width: 100%;
+          text-align: center;
+          position: absolute;
+          bottom: 0;
+          .ivu-btn {
+            border-radius: 0;
+            width: 33.333%;
+          }
         }
       }
     }
     .details {
       width: 100%;
       text-align: left;
+      background: white;
+      height: calc(100% - 6rem);
+      position: absolute;
+      bottom: 0;
+      .swiper-item {
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+      }
+      .consumption {
+        width: 100%;
+        height: 3rem;
+        background: red;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+        .price {
+          width: 100%;
+          height: auto;
+          position: absolute;
+          top: 0;
+          background: #00000063;
+          color: white;
+          padding: .2rem;
+          font-size: .5rem;
+        }
+      }
     }
   }
   .introduction.active {
@@ -245,6 +337,30 @@ export default {
 /deep/ .swiper-container {
   width: 100%;
   height: 100%;
-  top: -0.64rem;
+}
+/deep/ .ivu-tabs.ivu-tabs-card > .ivu-tabs-bar .ivu-tabs-tab {
+  margin-right: 0;
+  border-radius: 0;
+}
+/deep/ .ivu-tabs-bar {
+  height: 0.64rem;
+  margin-bottom: 0;
+}
+/deep/ .ivu-tabs .ivu-tabs-content-animated {
+  height: calc(100% - 0.64rem);
+}
+/deep/ .ivu-tabs .ivu-tabs-tabpane {
+  height: 100%;
+  overflow-y: auto;
+}
+/deep/ .ivu-tabs {
+  height: 100%;
+}
+/deep/ .ivu-tabs-bar .ivu-tabs-tab {
+  width: 33.3%;
+  text-align: center;
+}
+/deep/ .ivu-tabs-nav {
+  width: 100%;
 }
 </style>

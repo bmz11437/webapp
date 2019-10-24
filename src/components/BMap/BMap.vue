@@ -8,7 +8,11 @@
       :autoLocation="true"
     ></bm-geolocation>
     <bm-city-list :offset="{width:200,height:10}" anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-city-list>
-    <bm-map-type :map-types="['BMAP_NORMAL_MAP', 'BMAP_HYBRID_MAP']" :offset="{width:100,height:10}" anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-map-type>
+    <bm-map-type
+      :map-types="['BMAP_NORMAL_MAP', 'BMAP_HYBRID_MAP']"
+      :offset="{width:100,height:10}"
+      anchor="BMAP_ANCHOR_TOP_RIGHT"
+    ></bm-map-type>
     <!-- <bm-overview-map anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :isOpen="true"></bm-overview-map> -->
     <bm-panorama></bm-panorama>
   </baidu-map>
@@ -26,7 +30,6 @@ export default {
 }
 </script>
  
-<!--Add"scoped" attribute to limit CSS to this component only -->
 <style lang='scss' scoped>
 .bm-view {
   width: 100%;
