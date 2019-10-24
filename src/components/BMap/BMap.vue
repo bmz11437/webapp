@@ -1,5 +1,5 @@
 <template>
-  <baidu-map class="bm-view" center="北京" :scroll-wheel-zoom="true">
+  <baidu-map class="bm-view" center="厦门" :scroll-wheel-zoom="true" @ready="handler">
     <!-- <bm-navigation style="top:40px" anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation> -->
     <bm-geolocation
       anchor="BMAP_ANCHOR_BOTTOM_RIGHT"
@@ -21,12 +21,39 @@
 export default {
   data() {
     return {
-      keyword: ''
+      keyword: '',
+      map: null,
+      mapClickEvent: null,
+      BMap: null
     }
   },
-  methods: {
+  mounted() {
 
+  },
+  methods: {
+    handler({ BMap, map }) {
+      this.map = map; this.BMap = BMap;
+      var p1 = new BMap.Point(118.10787, 24.47449);
+      var p2 = new BMap.Point(118.131711, 24.430806);
+      var p3 = new BMap.Point(118.096579, 24.441466);
+      var p4 = new BMap.Point(118.11282, 24.434491);
+      var driving = new BMap.DrivingRoute(map, { renderOptions: { map: map, autoViewport: true ,enableDragging : true} });
+      driving.search(p1, p2, { waypoints: [p3, p4] });//waypoints表示途经点
+      this.mapClickEvent = map.addEventListener("click", this.mapClick);
+    },
+    mapClick(e) {
+      console.log(e.point.lng + ", " + e.point.lat);
+
+    }
+
+  },
+  beforeDestroy() {
+    debugger
+    if (this.mapClickEvent) {
+      this.mapClickEvent.remove();
+    }
   }
+
 }
 </script>
  

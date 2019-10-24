@@ -64,10 +64,136 @@
           <TabPane label="消费情况">
             <div class="consumption">
               <img src="http://localhost:8088/images/food1.jpg" />
-              <div class="price">$20</div>
+              <div class="price">
+                <div class="num">$20</div>
+                <div class="star">
+                  <Rate show-text allow-half value="3.8">
+                    <span style="color: #f5a623">3.8分</span>
+                  </Rate>
+                </div>
+              </div>
+            </div>
+
+            <div class="consumption">
+              <img src="http://localhost:8088/images/food1.jpg" />
+              <div class="price">
+                <div class="num">$20</div>
+                <div class="star">
+                  <Rate show-text allow-half value="3.8">
+                    <span style="color: #f5a623">3.8分</span>
+                  </Rate>
+                </div>
+              </div>
+            </div>
+            <div class="consumption">
+              <img src="http://localhost:8088/images/food1.jpg" />
+              <div class="price">
+                <div class="num">$20</div>
+                <div class="star">
+                  <Rate show-text allow-half value="3.8">
+                    <span style="color: #f5a623">3.8分</span>
+                  </Rate>
+                </div>
+              </div>
+            </div>
+            <div class="consumption">
+              <img src="http://localhost:8088/images/food1.jpg" />
+              <div class="price">
+                <div class="num">$20</div>
+                <div class="star">
+                  <Rate show-text allow-half value="3.8">
+                    <span style="color: #f5a623">3.8分</span>
+                  </Rate>
+                </div>
+              </div>
+            </div>
+            <div class="consumption">
+              <img src="http://localhost:8088/images/food1.jpg" />
+              <div class="price">
+                <div class="num">$20</div>
+                <div class="star">
+                  <Rate show-text allow-half value="3.8">
+                    <span style="color: #f5a623">3.8分</span>
+                  </Rate>
+                </div>
+              </div>
             </div>
           </TabPane>
-          <TabPane label="用户评论">标签三的内容</TabPane>
+          <TabPane label="用户评论">
+            <List>
+              <ListItem>
+                <ListItemMeta
+                  avatar="https://dev-file.iviewui.com/userinfoPDvn9gKWYihR24SpgC319vXY8qniCqj4/avatar"
+                  title="This is title"
+                  description="This is description, this is description."
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemMeta
+                  avatar="https://dev-file.iviewui.com/userinfoPDvn9gKWYihR24SpgC319vXY8qniCqj4/avatar"
+                  title="This is title"
+                  description="This is description, this is description."
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemMeta
+                  avatar="https://dev-file.iviewui.com/userinfoPDvn9gKWYihR24SpgC319vXY8qniCqj4/avatar"
+                  title="This is title"
+                  description="This is description, this is description."
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemMeta
+                  avatar="https://dev-file.iviewui.com/userinfoPDvn9gKWYihR24SpgC319vXY8qniCqj4/avatar"
+                  title="This is title"
+                  description="This is description, this is description."
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemMeta
+                  avatar="https://dev-file.iviewui.com/userinfoPDvn9gKWYihR24SpgC319vXY8qniCqj4/avatar"
+                  title="This is title"
+                  description="This is description, this is description."
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemMeta
+                  avatar="https://dev-file.iviewui.com/userinfoPDvn9gKWYihR24SpgC319vXY8qniCqj4/avatar"
+                  title="This is title"
+                  description="This is description, this is description."
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemMeta
+                  avatar="https://dev-file.iviewui.com/userinfoPDvn9gKWYihR24SpgC319vXY8qniCqj4/avatar"
+                  title="This is title"
+                  description="This is description, this is description."
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemMeta
+                  avatar="https://dev-file.iviewui.com/userinfoPDvn9gKWYihR24SpgC319vXY8qniCqj4/avatar"
+                  title="This is title"
+                  description="This is description, this is description."
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemMeta
+                  avatar="https://dev-file.iviewui.com/userinfoPDvn9gKWYihR24SpgC319vXY8qniCqj4/avatar"
+                  title="This is title"
+                  description="This is description, this is description."
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemMeta
+                  avatar="https://dev-file.iviewui.com/userinfoPDvn9gKWYihR24SpgC319vXY8qniCqj4/avatar"
+                  title="This is title"
+                  description="This is description, this is description."
+                />
+              </ListItem>
+              
+            </List>
+          </TabPane>
         </Tabs>
       </div>
       <Spin fix v-show="loading"></Spin>
@@ -285,8 +411,10 @@ export default {
       }
       .consumption {
         width: 100%;
-        height: 3rem;
+        height: 4rem;
         background: red;
+        position: relative;
+        margin-bottom: 0.3rem;
         img {
           width: 100%;
           height: 100%;
@@ -294,12 +422,22 @@ export default {
         .price {
           width: 100%;
           height: auto;
-          position: absolute;
-          top: 0;
-          background: #00000063;
+          background: #000000a8;
           color: white;
-          padding: .2rem;
-          font-size: .5rem;
+          padding: 0.1rem 0.2rem;
+          font-size: 0.3rem;
+          line-height: 0.5rem;
+          position: absolute;
+          bottom: 0;
+          .num {
+            width: 1rem;
+            display: inline-block;
+          }
+          .star {
+            width: calc(100% - 1rem);
+            float: right;
+            text-align: right;
+          }
         }
       }
     }
@@ -352,6 +490,7 @@ export default {
 /deep/ .ivu-tabs .ivu-tabs-tabpane {
   height: 100%;
   overflow-y: auto;
+  position: relative;
 }
 /deep/ .ivu-tabs {
   height: 100%;
