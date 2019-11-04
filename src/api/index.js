@@ -6,3 +6,10 @@ export function getConfig(url) {
     url: url
   })
 }
+
+export function getTrip(url) {
+  return axios({
+    method: 'get',
+    url: url
+  })
+}

@@ -8,7 +8,7 @@
             <Icon type="ios-paper" />内容管理
           </MenuItem>
           <MenuItem name="2">
-            <Icon type="ios-people" />用户管理
+            <Icon type="ios-people" />第一天
           </MenuItem>
           <Submenu name="3">
             <template slot="title">
@@ -32,38 +32,16 @@
     </div>
     <div class="main-con">
       <div class="left-menu">
-        <Menu :theme="theme2" style="width:100%;height:100%" v-if="false">
-          <Submenu name="1">
+        <Menu :theme="theme2" style="width:100%;height:100%" @on-select="handSelectChange">
+          <Submenu :name="item.id" v-for="(item,i) in leftMenu" :key="i">
             <template slot="title">
-              <Icon type="ios-paper" />内容管理
+              <Icon :type="item.icon" />
+              {{item.name}}
             </template>
-            <MenuItem name="1-1">文章管理</MenuItem>
-            <MenuItem name="1-2">评论管理</MenuItem>
-            <MenuItem name="1-3">举报管理</MenuItem>
-          </Submenu>
-          <Submenu name="2">
-            <template slot="title">
-              <Icon type="ios-people" />用户管理
-            </template>
-            <MenuItem name="2-1">新增用户</MenuItem>
-            <MenuItem name="2-2">活跃用户</MenuItem>
-          </Submenu>
-          <Submenu name="3">
-            <template slot="title">
-              <Icon type="ios-stats" />统计分析
-            </template>
-            <MenuGroup title="使用">
-              <MenuItem name="3-1">新增和启动</MenuItem>
-              <MenuItem name="3-2">活跃分析</MenuItem>
-              <MenuItem name="3-3">时段分析</MenuItem>
-            </MenuGroup>
-            <MenuGroup title="留存">
-              <MenuItem name="3-4">用户留存</MenuItem>
-              <MenuItem name="3-5">流失用户</MenuItem>
-            </MenuGroup>
+            <MenuItem :name="menu.id" v-for="(menu,j) in item.children" :key="j">{{menu.name}}</MenuItem>
           </Submenu>
         </Menu>
-        <Timeline>
+        <Timeline v-if="false">
           <TimelineItem>
             <p class="time">Day1</p>
             <p class="content">曾厝垵</p>
@@ -88,12 +66,27 @@
         </Timeline>
       </div>
       <div class="right-con">
-        <router-view />
+        <router-view :hideInfo="hideInfo" @showQuanJing="showQuanJing" />
+      </div>
+      <div class="quanjing-con" :style="{'z-index':showQJ?'999':'-1'}">
+        <div class="img-body" ref="QuanJing"></div>
+        <Button
+          ghost
+          class="hide-btn"
+          shape="circle"
+          icon="ios-close"
+          :style="{'z-index':showQJ?'1000':'-1'}"
+          @click="hideQuanJing"
+        ></Button>
       </div>
     </div>
   </div>
 </template>
 <script>
+import { getTrip } from '@/api/index'
+import PhotoViewer from 'photo-sphere-viewer'
+import 'photo-sphere-viewer/dist/photo-sphere-viewer.css'
+
 export default {
   name: 'layout',
   props: {
@@ -107,7 +100,7 @@ export default {
     },
     theme2: {
       type: String,
-      default: () => 'light'
+      default: () => 'dark'
     },
     routerName: {
       type: String,
@@ -117,7 +110,40 @@ export default {
 
   data() {
     return {
+      hideInfo: true,
+      showQJ: false,
+      leftMenu: []
+    }
+  },
 
+  mounted() {
+    getTrip('http://localhost:8088/configs/trip.json').then(res => {
+      if (res.status === 200) {
+        this.leftMenu = res.data;
+      }
+    })
+  },
+  methods: {
+    handSelectChange(value) {
+      console.log(value);
+      this.hideInfo = false;
+    },
+    showQuanJing() {
+      this.showQJ = true;
+      let url = 'http://localhost:8088/images/home.jpg'
+      PhotoViewer({
+        container: this.$refs.QuanJing,
+        panorama: url,
+        navbar: true,
+        time_anim: false,
+        size: {
+          width: '100%',
+          height: '100%'
+        }
+      })
+    },
+    hideQuanJing() {
+      this.showQJ = false;
     }
   }
 }
@@ -169,6 +195,27 @@ export default {
       right: 0;
       top: 0rem;
     }
+    .quanjing-con {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      .img-body {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+      }
+      .hide-btn {
+        position: absolute;
+        right: 0.5rem;
+        top: 0.5rem;
+        width: 1rem;
+        height: 1rem;
+        font-size: 0.5rem;
+      }
+    }
   }
 }
 /deep/ .ivu-menu-horizontal {
@@ -180,6 +227,6 @@ export default {
 /deep/ .ivu-timeline {
   width: 100%;
   height: 100%;
-  padding: .3rem;
+  padding: 0.3rem;
 }
 </style>

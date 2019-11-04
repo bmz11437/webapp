@@ -14,7 +14,7 @@
       anchor="BMAP_ANCHOR_TOP_RIGHT"
     ></bm-map-type>
     <!-- <bm-overview-map anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :isOpen="true"></bm-overview-map> -->
-    <bm-panorama></bm-panorama>
+    <!-- <bm-panorama></bm-panorama> -->
   </baidu-map>
 </template>
 <script>
@@ -48,7 +48,6 @@ export default {
 
   },
   beforeDestroy() {
-    debugger
     if (this.mapClickEvent) {
       this.mapClickEvent.remove();
     }
