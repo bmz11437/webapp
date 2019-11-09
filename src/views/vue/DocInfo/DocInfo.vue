@@ -29,7 +29,7 @@
           </TabPane>
           <TabPane label="消费情况">
             <div class="consumption">
-              <img src="http://localhost:8088/images/food1.jpg" />
+              <img src="http://122.51.140.204:8080/resources/images/food1.jpg" />
               <div class="price">
                 <div class="num">$20</div>
                 <div class="star">
@@ -41,7 +41,7 @@
             </div>
 
             <div class="consumption">
-              <img src="http://localhost:8088/images/food1.jpg" />
+              <img src="http://122.51.140.204:8080/resources/images/food1.jpg" />
               <div class="price">
                 <div class="num">$20</div>
                 <div class="star">
@@ -52,7 +52,7 @@
               </div>
             </div>
             <div class="consumption">
-              <img src="http://localhost:8088/images/food1.jpg" />
+              <img src="http://122.51.140.204:8080/resources/images/food1.jpg" />
               <div class="price">
                 <div class="num">$20</div>
                 <div class="star">
@@ -63,7 +63,7 @@
               </div>
             </div>
             <div class="consumption">
-              <img src="http://localhost:8088/images/food1.jpg" />
+              <img src="http://122.51.140.204:8080/resources/images/food1.jpg" />
               <div class="price">
                 <div class="num">$20</div>
                 <div class="star">
@@ -74,7 +74,7 @@
               </div>
             </div>
             <div class="consumption">
-              <img src="http://localhost:8088/images/food1.jpg" />
+              <img src="http://122.51.140.204:8080/resources/images/food1.jpg" />
               <div class="price">
                 <div class="num">$20</div>
                 <div class="star">
@@ -202,7 +202,7 @@ export default {
       mainInfo: {
         name: '曾厝垵',
         address: '福建省厦门市思明区环岛南路110',
-        imgUrl: 'http://localhost:8088/images/img1.jpg'
+        imgUrl: 'http://122.51.140.204:8080/resources/images/img1.jpg'
       },
       images: [],
       value1: ['1', '2', '3', '4', '5', '6'],
@@ -241,7 +241,7 @@ export default {
     }
   },
   mounted() {
-    getConfig('http://localhost:8088/configs/homePage.json').then(res => {
+    getConfig(this.$store.state.resourceUrl+'/configs/homePage.json').then(res => {
       if (res.status === 200) {
         let images = [];
         res.data.pages.forEach(page => {

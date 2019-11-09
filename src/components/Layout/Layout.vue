@@ -117,20 +117,19 @@ export default {
   },
 
   mounted() {
-    getTrip('http://localhost:8088/configs/trip.json').then(res => {
+    getTrip(this.$store.state.resourceUrl + '/configs/trip.json').then(res => {
       if (res.status === 200) {
         this.leftMenu = res.data;
       }
     })
   },
   methods: {
-    handSelectChange(value) {
-      console.log(value);
+    handSelectChange() {
       this.hideInfo = false;
     },
     showQuanJing() {
       this.showQJ = true;
-      let url = 'http://localhost:8088/images/home.jpg'
+      let url = this.$store.state.resourceUrl + '/images/home.jpg'
       PhotoViewer({
         container: this.$refs.QuanJing,
         panorama: url,
