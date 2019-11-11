@@ -1,4 +1,4 @@
-import vue from './vue';
+import tourism from './tourism';
 
 const routes = [{
   path: '/',
@@ -9,6 +9,6 @@ const routes = [{
   name: 'home',
   component: () => import('../../views/MainPage/MainPage.vue')
 }, {
-  ...vue
+  ...tourism
 }]
 export default routes

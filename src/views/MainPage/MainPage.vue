@@ -100,7 +100,7 @@ export default {
   },
   methods: {
     showLineInfo() {
-      this.$router.replace('vue')
+      this.$router.replace('tourism')
     }
   }
 

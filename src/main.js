@@ -9,6 +9,9 @@ import 'iview/dist/styles/iview.css'
 import 'swiper/dist/css/swiper.css'
 import 'viewerjs/dist/viewer.css'
 import Viewer from 'v-viewer'
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts
+
 Vue.use(Viewer)
 Vue.use(vueAwesomeSwiper)
 Vue.use(iview)

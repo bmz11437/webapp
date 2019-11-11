@@ -3,7 +3,7 @@
     <div class="header">
       <div class="title">{{title}}</div>
       <div class="menus">
-        <Menu mode="horizontal" :theme="theme1" active-name="1">
+        <Menu mode="horizontal"  active-name="1">
           <MenuItem name="1">
             <Icon type="ios-paper" />内容管理
           </MenuItem>
@@ -30,62 +30,14 @@
         </Menu>
       </div>
     </div>
-    <div class="main-con">
-      <div class="left-menu">
-        <Menu :theme="theme2" style="width:100%;height:100%" @on-select="handSelectChange">
-          <Submenu :name="item.id" v-for="(item,i) in leftMenu" :key="i">
-            <template slot="title">
-              <Icon :type="item.icon" />
-              {{item.name}}
-            </template>
-            <MenuItem :name="menu.id" v-for="(menu,j) in item.children" :key="j">{{menu.name}}</MenuItem>
-          </Submenu>
-        </Menu>
-        <Timeline v-if="false">
-          <TimelineItem>
-            <p class="time">Day1</p>
-            <p class="content">曾厝垵</p>
-            <p class="content">白帝城沙滩</p>
-          </TimelineItem>
-          <TimelineItem>
-            <p class="time">1984年</p>
-            <p class="content">发布 Macintosh</p>
-          </TimelineItem>
-          <TimelineItem>
-            <p class="time">2007年</p>
-            <p class="content">发布 iPhone</p>
-          </TimelineItem>
-          <TimelineItem>
-            <p class="time">2010年</p>
-            <p class="content">发布 iPad</p>
-          </TimelineItem>
-          <TimelineItem>
-            <p class="time">2011年10月5日</p>
-            <p class="content">史蒂夫·乔布斯去世</p>
-          </TimelineItem>
-        </Timeline>
-      </div>
-      <div class="right-con">
-        <router-view :hideInfo="hideInfo" @showQuanJing="showQuanJing" />
-      </div>
-      <div class="quanjing-con" :style="{'z-index':showQJ?'999':'-1'}">
-        <div class="img-body" ref="QuanJing"></div>
-        <Button
-          ghost
-          class="hide-btn"
-          shape="circle"
-          icon="ios-close"
-          :style="{'z-index':showQJ?'1000':'-1'}"
-          @click="hideQuanJing"
-        ></Button>
-      </div>
-    </div>
+    <slot name="main">
+      
+    </slot>
   </div>
 </template>
 <script>
-import { getTrip } from '@/api/index'
-import PhotoViewer from 'photo-sphere-viewer'
-import 'photo-sphere-viewer/dist/photo-sphere-viewer.css'
+
+
 
 export default {
   name: 'layout',
@@ -94,14 +46,7 @@ export default {
       type: String,
       default: () => 'Vue技术整理'
     },
-    theme1: {
-      type: String,
-      default: () => 'light'
-    },
-    theme2: {
-      type: String,
-      default: () => 'dark'
-    },
+
     routerName: {
       type: String,
       default: () => 'DocInfo'
@@ -110,39 +55,9 @@ export default {
 
   data() {
     return {
-      hideInfo: true,
-      showQJ: false,
-      leftMenu: []
-    }
-  },
 
-  mounted() {
-    getTrip(this.$store.state.resourceUrl + '/configs/trip.json').then(res => {
-      if (res.status === 200) {
-        this.leftMenu = res.data;
-      }
-    })
-  },
-  methods: {
-    handSelectChange() {
-      this.hideInfo = false;
-    },
-    showQuanJing() {
-      this.showQJ = true;
-      let url = this.$store.state.resourceUrl + '/images/home.jpg'
-      PhotoViewer({
-        container: this.$refs.QuanJing,
-        panorama: url,
-        navbar: true,
-        time_anim: false,
-        size: {
-          width: '100%',
-          height: '100%'
-        }
-      })
-    },
-    hideQuanJing() {
-      this.showQJ = false;
+      showQJ: false,
+
     }
   }
 }
@@ -176,45 +91,7 @@ export default {
     position: absolute;
     top: 1rem;
     left: 0;
-    .left-menu {
-      width: 5rem;
-      height: 100%;
-      display: inline-block;
-      // border-right: 1px solid #dcdee2;
-      top: 0rem;
-      position: absolute;
-      left: 0rem;
-      text-align: left;
-    }
-    .right-con {
-      width: calc(100% - 5rem);
-      height: 100%;
-      display: inline-block;
-      position: absolute;
-      right: 0;
-      top: 0rem;
-    }
-    .quanjing-con {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      .img-body {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-      }
-      .hide-btn {
-        position: absolute;
-        right: 0.5rem;
-        top: 0.5rem;
-        width: 1rem;
-        height: 1rem;
-        font-size: 0.5rem;
-      }
-    }
+   
   }
 }
 /deep/ .ivu-menu-horizontal {

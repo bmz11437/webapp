@@ -11,6 +11,7 @@
     "animate.css": "^3.7.2",
     "axios": "^0.19.0",
     "core-js": "^3.3.2",
+    "echarts": "^4.4.0",
     "iview": "^3.5.1",
     "photo-sphere-viewer": "^3.5.1",
     "three": "^0.109.0",
